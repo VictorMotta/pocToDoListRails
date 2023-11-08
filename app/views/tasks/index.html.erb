@@ -1,0 +1,22 @@
+<div class="header">
+  <div class="mainContainer">
+    <%= image_tag 'logo.png', class:"imageLogo" %>
+    <%= form_for Task.new, html: { class: "containerInput" } do | form | %>
+        <%= form.text_field :task, class:"inputAddTask", placeholder: "Digite sua nova tarefa!!" %>
+        <%= form.submit "Adicionar", class:"buttonSubmit" %>
+    <% end %>
+  </div>
+  <div class="containerContent">
+    <% tasks = Task.all %>
+    <% tasks.each do | task | %>
+      <div class="containerTask">
+        <div class="textTask">
+          <%= task.task %>
+        </div>
+        <%= button_to task_path(task), method: "delete", class:"buttonRemoveTask" do %>
+          <i class="fas fa-trash fa-2x text-danger click"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
